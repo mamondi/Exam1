@@ -8,7 +8,7 @@ HangmanGame::HangmanGame(const std::string& word) : secretWord(word), attempts(w
 bool HangmanGame::guessLetter(char letter) {
     bool found = false;
 
-    letter = std::tolower(letter); // Convert to lowercase
+    letter = std::tolower(letter); 
 
     for (size_t i = 0; i < secretWord.length(); ++i) {
         if (std::tolower(secretWord[i]) == letter) {
@@ -80,12 +80,11 @@ std::vector<std::string> readWordsFromFile(const std::string& filename) {
     if (file.is_open()) {
         std::string word;
         while (std::getline(file, word)) {
-            // Розшифрування слова за шифром цезаря ROT1
             for (char& ch : word) {
                 if (std::isalpha(ch)) {
-                    ch = static_cast<char>(std::toupper(ch) - 1);  // ROT1 для літер
+                    ch = static_cast<char>(std::toupper(ch) - 1); 
                     if (ch < 'A') {
-                        ch = 'Z';  // Зациклюємо на початок алфавіту
+                        ch = 'Z'; 
                     }
                 }
             }
