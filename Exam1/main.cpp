@@ -6,7 +6,7 @@
 using namespace std;
 
 int main() {
-    srand(time(0)); // Seed for random number generation
+    srand(time(0)); 
 
     vector<string> words = readWordsFromFile("words.txt");
 
@@ -17,10 +17,10 @@ int main() {
 
     int randomIndex = rand() % 50 + 1;
 
-    // Select a word from the list based on the generated random number
+  
     string selectedWord;
     if (randomIndex <= words.size()) {
-        selectedWord = words[randomIndex - 1];  // Adjust for zero-based index
+        selectedWord = words[randomIndex - 1]; 
     }
     else {
         cerr << "Error: Not enough words in the file." << endl;
@@ -32,7 +32,6 @@ int main() {
     cout << "Guess the word. Initial state: " << game.getGuessedWord() << endl;
 
     while (!game.isGameOver()) {
-        // Display current state of the game
         clearConsole();
 
         cout << "Attempts remaining: " << GREEN_COLOR << game.getAttempts() << RESET_COLOR << endl;
@@ -51,10 +50,8 @@ int main() {
         string input;
         cin >> input;
 
-        // Check the input
         if (input.length() == 1 && isalpha(input[0])) {
-            char letter = tolower(input[0]); // Convert to lowercase
-            // Process user input
+            char letter = tolower(input[0]); 
             if (game.guessLetter(letter)) {
                 cout << "Correct guess!" << endl;
             }
@@ -65,9 +62,9 @@ int main() {
         else {
             cout << endl;
             cout << RED_COLOR << ">> Invalid input. Please enter a single letter <<" << RESET_COLOR << endl;
-            cin.clear(); // Clear the error flag
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear input buffer
-            cin.get();  // Wait for user to press Enter
+            cin.clear(); 
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.get(); 
         }
     }
     displayGameStatistics(game);
